@@ -5,18 +5,8 @@ class Framework:
 		self.community_manager = CommunityManager()
 		self.user_manager = UserManager()
 
-	def get_user_id(self, username):
-		return self.user_manager.get_user(user_name)
-
-	def add_user(self, username, password):
-		return self.user_manager.add_user(username, password)
-
 	# def get_article_by_id(self, aid):
 	# 	return self.article_manager.get_article_by_id(aid)
-
-	def get_user_by_id(self, uid):
-		return self.article_manager.get_user_by_id(uid)
-
 
 	# Article methods
 
@@ -29,16 +19,10 @@ class Framework:
 	def get_article_score(self, aid):
 		return self.article_manager.get_article_score(aid)
 
-	def get_community_articles(self, cid):
-		return self.article_manager.get_community_articles(cid)
-
-	def get_user_articles(self, uid):
-		return self.article_manager.get_user_articles(uid)
-
 	def post_article(self, title, url, uid, cid):
 		aid = self.article_manager.post_article(title, url, uid, cid)
 		self.community_manager.post_article(uid, aid)
-		self.user_manager.post_article(uid, aid)
+		self.user_manager.add_user_article(uid, aid)
 
 	def upvote(self, aid):
 		self.article_manager.upvote(aid)
@@ -46,12 +30,44 @@ class Framework:
 	def downvote(self, aid):
 		self.article_manager.downvote(aid)
 
+
+	# User methods
+
+	def add_user(self, username):
+		return self.user_manager.add_user(username)
+
+	def get_users():
+		return self.user_manager.get_users()
+
 	def get_user_communities(self, uid):
-		self.user_manager.get_user_communities(self, uid)
+		return self.user_manager.get_user_communities(self, uid)
+
+	def get_user_articles(self, uid):
+		return self.user_manager.get_user_articles(uid)
 
 	def add_user_community(self, uid, cid):
 		self.user_manager.add_user_community(uid, cid)
 		self.community_manager.add_user_community(uid, cid)
 
-	
+	def remove_user_community(self, uid, cid):
+		self.user_manager.remove_user_community(uid, cid)
+		self.community_manager.remove_user_community(uid, cid)
+
+
+	# Community methods
+	def get_communities(self):
+		return self.community_manager.get_communities()
+
+	def add_community(self, name):
+		self.community_manager.add_new_community(name)
+
+	def get_community_users(self, cid):
+		return self.community_manager.get_community_users(cid)
+
+	def get_community_articles(self, cid):
+		return self.community_manager.get_community_articles(cid)
+
+	def rank_articles(article_ids): 
+    	aids = sorted(article_ids, key=self.get_article_score)
+    	return [self.get_article_title(aid) for aid in aids]
 
