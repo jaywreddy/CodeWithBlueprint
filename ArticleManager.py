@@ -1,11 +1,17 @@
 class ArticleManager:
 
     def __init__(self):
-        self.articles = []
+        self.article_ids = []
         self.id_to_article = {}
 
     def get_article_dict(self):
         return self.id_to_article
+
+    '''
+    Returns the list of all article id's
+    '''
+    def get_articles(self):
+        return self.article_ids
 
     '''
     Returns Article Object given an ID
@@ -17,14 +23,14 @@ class ArticleManager:
         article = Article(title, url, user_id, comm_id)
         article_id = article.get_id()
         self.id_to_article[article_id] = article
-        self.articles.append(article)
+        self.article_ids.append(article_id)
         return article_id
 
-    def upvote_article(self, article_id):
+    def upvote(self, article_id):
         article = self.id_to_article[article_id]
         article.upvote()
 
-    def downvote_article(self, article_id):
+    def downvote(self, article_id):
         article = self.id_to_article[article_id]
         article.downvote()
 

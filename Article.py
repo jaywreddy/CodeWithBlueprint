@@ -3,9 +3,7 @@ class Article:
 
     def __init__(self, title, url, user_id, comm_id):
         Article.id += 1
-
         self.upvotes = 0
-
         self.title = title
         self.url = url
         self.user_id = user_id
