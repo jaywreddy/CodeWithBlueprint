@@ -2,6 +2,12 @@ class CommunityManager:
 
     communities = {}
 
+    def add_user_community(userId, communityId):
+	communities[communityId].add_user(userId)
+
+    def remove_user_community(userId, communityId):
+	communities[communityId].remove_user(userId)
+
     def add_community(self, name):
 	new_community = Community(self, name)
 	communities[new_community.get_id()] = new_community
@@ -28,6 +34,9 @@ class Community:
 
     def add_user(self, userId):
 	self.users.append(userId)
+
+    def remove_user(self, userId):
+	self.users.remove(userId)
 
     def add_article(self, articleId):
 	self.articles.append(articleId)
