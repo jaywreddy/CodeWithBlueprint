@@ -1,3 +1,7 @@
+from CommunityManager import CommunityManager
+from UserManager import UserManager
+from ArticleManager import ArticleManager
+
 class Framework:
 
 	def __init__(self):
@@ -36,8 +40,8 @@ class Framework:
 	def add_user(self, username):
 		return self.user_manager.add_user(username)
 
-	def get_users():
-		return self.user_manager.get_users()
+	def get_users(self):
+		return self.user_manager.get_all_users()
 
 	def get_user_communities(self, uid):
 		return self.user_manager.get_user_communities(self, uid)
@@ -68,6 +72,8 @@ class Framework:
 		return self.community_manager.get_community_articles(cid)
 
 	def rank_articles(article_ids): 
-    	aids = sorted(article_ids, key=self.get_article_score)
-    	return [self.get_article_title(aid) for aid in aids]
+		aids = sorted(article_ids, key=self.get_article_score)
+		return [self.get_article_title(aid) for aid in aids]
 
+if __name__ == '__main__':
+	import IPython; IPython.embed()
