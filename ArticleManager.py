@@ -1,3 +1,5 @@
+import Article, random
+
 class ArticleManager:
 
     def __init__(self):
@@ -13,11 +15,14 @@ class ArticleManager:
     def get_articles(self):
         return self.article_ids
 
-    '''
-    Returns Article Object given an ID
-    '''
-    def get_article_by_id(self, id):
-        return self.id_to_article[id]
+    def get_article_url(self, id):
+        return self.id_to_article[id].get_url()
+
+    def get_article_title(self, id):
+        return self.id_to_article[id].get_title()
+
+    def get_article_score(self, id):
+        return self.id_to_article[id].get_upvotes()
 
     def post_article(self, title, url, user_id, comm_id):
         article = Article(title, url, user_id, comm_id)
@@ -34,11 +39,6 @@ class ArticleManager:
         article = self.id_to_article[article_id]
         article.downvote()
 
-    def get_article_url(self, id):
-        return self.id_to_article[id].get_url()
-
-    def get_article_title(self, id):
-        return self.id_to_article[id].get_title()
-
-    def get_article_score(self, id):
-        return self.id_to_article[id].get_upvotes()
+    def get_random_article(self):
+        rand_int = random.randint(1, len(self.article_ids))
+        return self.id_to_article(rand_int)
