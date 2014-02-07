@@ -2,8 +2,8 @@ class UserManager:
     def __init__(self):
 	self.users= {}
 
-    def add_user(self, username):
-        self.users[username] = {'articles':[], 'communities':[]}
+    def add_user(self, user_id):
+        self.users[user_id] = {'articles':[], 'communities':[]}
         return True
 
     def add_user_article(self, user_id, article_id):
