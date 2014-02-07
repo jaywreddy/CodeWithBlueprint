@@ -13,7 +13,6 @@ class Framework:
 	# 	return self.article_manager.get_article_by_id(aid)
 
 	# Article methods
-
 	def get_articles(self):
 		return self.user_manager.get_articles()
 
@@ -46,7 +45,6 @@ class Framework:
 		return self.article_manager.get_random_article()
 
 	# User methods
-
 	def add_user(self, username):
 		return self.user_manager.add_user(username)
 
@@ -68,7 +66,6 @@ class Framework:
 		self.user_manager.remove_user_community(uid, cid)
 		self.community_manager.remove_user_community(uid, cid)
 
-
 	# Community methods
 	def get_communities(self):
 		return self.community_manager.get_communityIds()
@@ -83,12 +80,9 @@ class Framework:
 		aids = self.community_manager.get_community_articles(cid)
 		return self.get_articles(aids)
 
-	
-
 	# Helper methods
-
 	def rank_articles(aids): 
-		return sorted_aids = sorted(aids, key=self.get_article_score)
+		return sorted(aids, key=self.get_article_score)
 
 	def get_articles(self, aids):
 		articles = []
