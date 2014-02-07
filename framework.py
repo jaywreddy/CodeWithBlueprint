@@ -13,6 +13,8 @@ class Framework:
 	# 	return self.article_manager.get_article_by_id(aid)
 
 	# Article methods
+	def get_articles(self):
+		return self.user_manager.get_articles()
 
 	def get_article_url(self, aid):
 		return self.user_manager.get_article_url(aid)
@@ -34,9 +36,15 @@ class Framework:
 	def downvote(self, aid):
 		self.article_manager.downvote(aid)
 
+	def get_top_articles(self):
+		aids = self.get_articles()
+		top_aids = rank_articles(aids)[:20]
+		return get_articles(top_aids)
+
+	def get_random_article(self):
+		return self.article_manager.get_random_article()
 
 	# User methods
-
 	def add_user(self, username):
 		return self.user_manager.add_user(username)
 
@@ -47,7 +55,8 @@ class Framework:
 		return self.user_manager.get_user_communities(self, uid)
 
 	def get_user_articles(self, uid):
-		return self.user_manager.get_user_articles(uid)
+		aids = self.user_manager.get_user_articles(uid)
+		return self.get_articles(aids)
 
 	def add_user_community(self, uid, cid):
 		self.user_manager.add_user_community(uid, cid)
@@ -57,10 +66,9 @@ class Framework:
 		self.user_manager.remove_user_community(uid, cid)
 		self.community_manager.remove_user_community(uid, cid)
 
-
 	# Community methods
 	def get_communities(self):
-		return self.community_manager.get_communities()
+		return self.community_manager.get_communityIds()
 
 	def add_community(self, name):
 		self.community_manager.add_new_community(name)
@@ -69,11 +77,19 @@ class Framework:
 		return self.community_manager.get_community_users(cid)
 
 	def get_community_articles(self, cid):
-		return self.community_manager.get_community_articles(cid)
+		aids = self.community_manager.get_community_articles(cid)
+		return self.get_articles(aids)
 
-	def rank_articles(article_ids): 
-		aids = sorted(article_ids, key=self.get_article_score)
-		return [self.get_article_title(aid) for aid in aids]
+	# Helper methods
+	def rank_articles(aids): 
+		return sorted(aids, key=self.get_article_score)
+
+	def get_articles(self, aids):
+		articles = []
+		for aid in aids:
+			article = (self.get_article_title(aid), self.get_article_url(aid), self.get_article_score(aid))
+			articles.append(article)
+		return articles
 
 if __name__ == '__main__':
 	import IPython; IPython.embed()

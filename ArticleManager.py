@@ -40,5 +40,4 @@ class ArticleManager:
         article.downvote()
 
     def get_random_article(self):
-        rand_int = random.randint(1, len(self.article_ids))
-        return self.id_to_article(rand_int)
+        return random.randint(1, len(self.article_ids))
