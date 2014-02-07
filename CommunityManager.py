@@ -8,8 +8,8 @@ class CommunityManager:
     def remove_user_community(userId, communityId):
 	communities[communityId].remove_user(userId)
 
-    def add_community(self, name):
-	new_community = Community(self, name)
+    def add_new_community(self, name):
+	new_community = Community(name)
 	communities[new_community.get_id()] = new_community
 
     def get_community_users(self, communityId):
