@@ -2,6 +2,9 @@ class UserManager:
     def __init__(self):
 	self.users= {}
 
+    def get_all_users(self):
+        return self.users.keys()
+
     def add_user(self, user_id):
         self.users[user_id] = {'articles':[], 'communities':[]}
         return True
