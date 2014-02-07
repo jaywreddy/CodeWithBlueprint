@@ -15,6 +15,8 @@ def check_login():
 
 while(True):
     cmd = raw_input("Main Menu:").split()
+    if not cmd:
+        cmd = [""]
     if(cmd[0] == "h"):
        print(""" 
 Commands:
