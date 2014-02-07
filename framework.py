@@ -34,6 +34,8 @@ class Framework:
 	def downvote(self, aid):
 		self.article_manager.downvote(aid)
 
+	def get_random_article(self):
+		return self.article_manager.get_random_article()
 
 	# User methods
 
