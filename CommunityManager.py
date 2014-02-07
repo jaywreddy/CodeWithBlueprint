@@ -2,17 +2,17 @@ class CommunityManager:
 
     communities = {}
 
-    def add_new_community(self, name):
+    def add_community(self, name):
 	new_community = Community(self, name)
 	communities[new_community.get_id()] = new_community
 
     def get_community_users(self, communityId):
-	communities[communityId].get_users()
+	return communities[communityId].get_users()
 
     def get_community_articles(self, communityId):
-	communities[communityId].get_articles()
+	return communities[communityId].get_articles()
 
-    def get_communityIds(self):
+    def get_communities(self):
 	return communities.keys()
 
 class Community:
