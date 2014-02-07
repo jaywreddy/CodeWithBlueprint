@@ -42,6 +42,9 @@ class Framework:
 		top_aids = rank_articles(aids)[:20]
 		return get_articles(top_aids)
 
+	def get_random_article(self):
+		return self.article_manager.get_random_article()
+
 	# User methods
 
 	def add_user(self, username):
